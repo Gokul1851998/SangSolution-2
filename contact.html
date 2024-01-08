@@ -85,7 +85,7 @@
                                     <a href="attendance.html" class="dropdown-item">Attendance Management System</a>
                                 </div>
                             </div>
-                            <a href="index.html" class="nav-item nav-link">Careers</a>
+                            <a href="careers.html" class="nav-item nav-link">Careers</a>
                             <a href="contact.html" class="nav-item nav-link active">Contact</a>
                         </div>
                     </div>
@@ -189,20 +189,23 @@
                         <div class="col-lg-6 wow fadeIn" data-wow-delay=".5s">
                             <div class="p-5 rounded contact-form">
                                 <div class="mb-4">
-                                    <input type="text" class="form-control border-0 py-3" placeholder="Your Name">
+                                    <input type="text" id="name" class="form-control border-0 py-3" placeholder="Your Name">
                                 </div>
                                 <div class="mb-4">
-                                    <input type="email" class="form-control border-0 py-3" placeholder="Your Email">
+                                    <input type="email" id="email" class="form-control border-0 py-3"
+                                        placeholder="Your Email">
                                 </div>
                                 <div class="mb-4">
-                                    <input type="text" class="form-control border-0 py-3" placeholder="Project">
+                                    <input type="text" id="project" class="form-control border-0 py-3"
+                                        placeholder="Project">
                                 </div>
                                 <div class="mb-4">
-                                    <textarea class="w-100 form-control border-0 py-3" rows="6" cols="10"
+                                    <textarea id="message" class="w-100 form-control border-0 py-3" rows="6" cols="10"
                                         placeholder="Message"></textarea>
                                 </div>
                                 <div class="text-start">
-                                    <button class="btn bg-primary text-white py-3 px-5" type="button">Send Message</button>
+                                    <button onclick="sendMessage()" class="btn bg-primary text-white py-3 px-5"
+                                        type="button">Send Message</button>
                                 </div>
                             </div>
                         </div>
@@ -306,7 +309,39 @@
         <script src="lib/easing/easing.min.js"></script>
         <script src="lib/waypoints/waypoints.min.js"></script>
         <script src="lib/owlcarousel/owl.carousel.min.js"></script>
-
+        <script>
+            function sendMessage() {
+                const name = document.getElementById('name').value;
+                const email = document.getElementById('email').value;
+                const project = document.getElementById('project').value;
+                const message = document.getElementById('message').value;
+    
+                const to = 'gokulmjp@gmail.com';
+                const subject = encodeURIComponent(project);
+                const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\nMessage: ${message}`);
+    
+                const mailtoLink = `mailto:${to}?subject=${subject}&body=${body}`;
+    
+                window.location.href = mailtoLink;
+                // Send data to server
+                //   fetch('/send-email', {
+                //     method: 'POST',
+                //     headers: {
+                //       'Content-Type': 'application/json',
+                //     },
+                //     body: JSON.stringify({ name, email, project, message }),
+                //   })
+                //   .then(response => response.json())
+                //   .then(data => {
+                //     console.log(data);
+                //     alert('Message sent successfully!');
+                //   })
+                //   .catch(error => {
+                //     console.error('Error:', error);
+                //     alert('Error sending message. Please try again later.');
+                //   });
+            }
+        </script>
         <!-- Template Javascript -->
         <script src="js/main.js"></script>
     </body>
